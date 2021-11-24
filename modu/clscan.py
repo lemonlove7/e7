@@ -3,11 +3,8 @@ import threading
 import queue
 import random
 import requests
-from requests.packages.urllib3.exceptions import InsecureRequestWarning  #消除警告
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning)  # 消除警告
-
-
-#User Agent的细节处理
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 def list_user_agent():
     user_agent_list = [
     {'User-Agent':'Mozilla/4.0 (Mozilla/4.0; MSIE 7.0; Windows NT 5.1; FDM; SV1; .NET CLR 3.0.04506.30)'},
@@ -30,14 +27,12 @@ def list_user_agent():
     {'User-Agent':'Mozilla/5.0 (Windows NT 6.0; U; en; rv:1.8.1) Gecko/20061208 Firefox/2.0.0 Opera 9.51'}
     ]
     return random.choice(user_agent_list)
-
-
 def mlscan(url):
     try:
-        while not q.empty():  ### 只要字典里不为空，就一直循环
-            d = q.get()  ### 把存储的payload取出来
-            urls = url + d  ### url+payload就是一个payload
-            urls = urls.replace('\n', '')  ### 利用回车来分割开来，不然打印的时候不显示
+        while not q.empty():
+            d = q.get()
+            urls = url + d
+            urls = urls.replace('\n', '')
             #print(urls)
             code = requests.get(url=urls,headers=list_user_agent(),verify=False,timeout=5).status_code
             #if code == 200 or code == 302 or code == 403:
@@ -45,29 +40,16 @@ def mlscan(url):
                 print(f'[+] {urls} [-] 状态:{code}')
             else:
                 pass
-                #print(urls+'不存在')
     except:
         pass
-
-
 def mu_scan(number,url):
     print('[-] 开始目录扫描...')
     number=int(number)
-    #print(number)
     for x in range(number):
         t = threading.Thread(target=mlscan, args=(url,))
         t.start()
         t.join()
-
-
-#url = 'http://www.baidu.com'
-#number=10
-
-
-
-
 q=queue.Queue()
-#t=input('[-] 请输入扫描的目录的类型(php,jsp,asp):')
 t=input('请输入扫描的目录的类型(php,jsp,asp):')
 if t== 'php':
     t='PHP.txt'
@@ -76,8 +58,5 @@ elif t== 'jsp':
 elif t == 'sap':
     t= 'ASP.txt'
 path=os.path.abspath(os.path.join(os.getcwd(), "./dict"))
-#print(path)
 for d in open(path + "\\" + t):
     q.put(d)
-#mu_scan(number=number)
-#mlscan(url=url)
