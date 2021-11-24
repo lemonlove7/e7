@@ -33,6 +33,7 @@ def main():
     modu.clscan.mu_scan(number=number,url=url)
 if __name__ == '__main__':
     print('[+] 版本：v1.1')
+    print('[+] author:lemonlove7')
     url = input('[+] 输入要进行信息收集的url：')
     #number = 10  # 多线程数量
     number = input('[+] 请输入线程：')
