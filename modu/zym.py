@@ -1,9 +1,8 @@
 import sys
 import requests
-from requests.packages.urllib3.exceptions import InsecureRequestWarning  #消除警告
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning)  # 消除警告
-
-zym_b=[] #扫描出来的子域名
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+zym_b=[]
 def zym_scan(do, apikey):
     # f=open(bc,'a+')
     # f.write('子域名扫描结果如下'+'\n')
@@ -25,18 +24,3 @@ def zym_scan(do, apikey):
     except(requests.ConnectionError):
         print("无法连接到www.vitustotal.com", file=sys.stderr)
         return
-
-    # print('[+] 共找到 %d 个域名' % len(domains))
-    # i = 1
-    # for domain in domains:
-    #     print("[%d] %s" % (i, domain))
-    #     i = i + 1
-    #     f=open(bc,'a+')
-    #     f.write(domain+'\n')
-    #     f.close()
-
-
-#do='baidu.com'
-#apikey=input('请输入api:')
-#apikey='b8850a5bbbba753effd1f5a8bc2dc98987a3b9d950b5fcded6071f28912470fa' #导入API' virustotal的API
-#zym_scan(do, apikey)
