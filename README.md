@@ -9,6 +9,7 @@ windows10（linux自测），python 3.8
 # 用法
 在modu目录下新建一个__init__.py的文件
 运行e7_information.py即可
+编译好的版本之间运行就好了
 # 功能
 1、域名反查ip
 2、检测是否存在CDN
