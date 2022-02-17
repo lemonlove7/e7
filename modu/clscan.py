@@ -55,7 +55,7 @@ if t== 'php':
     t='PHP.txt'
 elif t== 'jsp':
     t= 'JSP.txt'
-elif t == 'sap':
+elif t == 'asp':
     t= 'ASP.txt'
 path=os.path.abspath(os.path.join(os.getcwd(), "./dict"))
 for d in open(path + "\\" + t):
